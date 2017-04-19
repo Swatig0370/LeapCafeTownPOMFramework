@@ -26,34 +26,39 @@ public class HomeTest extends SeleniumUtil{
 		login = new LoginPage(driver);
 	}
 	
+	@BeforeMethod(dependsOnMethods = {"setUp"})
+	public HomePage openHomePage(){
+		home = login.LoginFunction("Luke", "Skywalker");
+		return home;
+	}
 	
 	//@Test
 	public void ValidateLogoutbutton(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		Assert.assertTrue(home.verifyLogoutbtn(), "User logged out successfully");
 	}
 	
 	@Test(priority =0)
 	public void validateRecordsOnHomePage(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		Assert.assertTrue(home.verifyRecords(),"Records are visiable on the Home Page");
 	}
 	
 	@Test(priority =1)
 	public void validateloggedUser(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		Assert.assertTrue(home.verifyHomePage(),"User id is correct");
 	}
 	
 	@Test(priority =2)
 	public void validateCreateButtonEnable(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		Assert.assertTrue(home.getCreateBtn().isEnabled(),"Edit id is correct");
 	}
 	
 	@Test(priority =3)
 	public void validateEditButtonDisabled(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		String value = home.getEditBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
 		Assert.assertTrue(classValue,"Edit button is disabled");
@@ -61,7 +66,7 @@ public class HomeTest extends SeleniumUtil{
 	
 	@Test(priority =4)
 	public void validateDeleteButtonDisabled(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		String value = home.getDeleteBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
 		Assert.assertTrue(classValue,"Delete button is disabled");
@@ -69,7 +74,7 @@ public class HomeTest extends SeleniumUtil{
 	
 	@Test(priority =5)
 	public void validateEditButtonEnabled(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		home.selectRecord();
 		String value = home.getEditBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
@@ -78,7 +83,7 @@ public class HomeTest extends SeleniumUtil{
 	
 	@Test(priority =6)
 	public void validateDeleteButtonEnabled(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		//home = login.LoginFunction("Luke", "Skywalker");
 		home.selectRecord();
 		String value = home.getEditBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
@@ -96,12 +101,20 @@ public class HomeTest extends SeleniumUtil{
 		Iterator<WebElement> iterat = home.getRecordList().iterator();
 		while(iterat.hasNext())
 		{
-			if((iterat.next().getText().contains(delrecord))!=true)
+			String actultext = iterat.next().getText();
+			if(actultext.contains(delrecord)!= true )
 			{
-				boolean deletestatus = iterat.next().getText().contains(delrecord);
+				boolean deletestatus = actultext.contains("Sel");
 				Assert.assertFalse(deletestatus, "Record is not deleted");
 				break;
 			}
+//			
+//			if((iterat.next().getText().contains(delrecord))!=true)
+//			{
+//				boolean deletestatus = iterat.next().getText().contains(delrecord);
+//				Assert.assertFalse(deletestatus, "Record is not deleted");
+//				break;
+//			}
 		}
 				
 	}

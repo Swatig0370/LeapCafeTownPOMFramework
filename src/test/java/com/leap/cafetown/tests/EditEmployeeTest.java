@@ -71,17 +71,16 @@ public class EditEmployeeTest extends SeleniumUtil{
 				
 		System.out.println(editpage.getFirstNameTB().getText());
 		editpage.getFirstNameTB().clear();
-		editpage.EnterFirstNameTB("SelUpdated");
+		editpage.EnterFirstNameTB("Sel");
 		editpage.clickUpdateBtn();
 		
 		Iterator<WebElement> iterat = home.getRecordList().iterator();
 		while(iterat.hasNext())
 		{
-			
-			if(iterat.next().getText().contains("SelUpdated") )
+			String actultext = iterat.next().getText();
+			if(actultext.contains("Sel") )
 			{
-				
-				boolean updatestatus = iterat.next().getText().contains("SelUpdated");
+				boolean updatestatus = actultext.contains("Sel");
 				Assert.assertTrue(updatestatus, "Record is not updated");
 				break;
 			}

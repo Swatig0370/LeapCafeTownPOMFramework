@@ -75,10 +75,9 @@ public class CreateNewEmployeeTest extends SeleniumUtil{
 		Iterator<WebElement> iterat = home.getRecordList().iterator();
 		while(iterat.hasNext())
 		{
-			
-			if(iterat.next().getText().contains("SelFirst") )
+			actultext = iterat.next().getText();
+			if(actultext.contains("SelFirst") )
 			{
-				actultext = iterat.next().getText();
 				Assert.assertEquals(actultext, "SelFirst SelLast");
 				break;
 			}
