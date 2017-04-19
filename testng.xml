@@ -9,7 +9,6 @@
 			<class name = "com.leap.cafetown.tests.HomeTest"/>
 			<class name = "com.leap.cafetown.tests.CreateNewEmployeeTest"/>
 			<class name = "com.leap.cafetown.tests.EditEmployeeTest"/>
-
 		</classes>
 	</test>
 </suite>
