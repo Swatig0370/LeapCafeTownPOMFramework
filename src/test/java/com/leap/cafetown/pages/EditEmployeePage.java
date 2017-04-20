@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.leap.cafetown.common.SeleniumUtil;
 
+//Edit Employee Page object repository.
 public class EditEmployeePage {
 	private WebDriver driver;
 	SeleniumUtil util = new SeleniumUtil();

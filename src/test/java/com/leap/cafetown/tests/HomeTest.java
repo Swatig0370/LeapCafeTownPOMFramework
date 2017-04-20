@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,6 +14,7 @@ import com.leap.cafetown.common.SeleniumUtil;
 import com.leap.cafetown.pages.HomePage;
 import com.leap.cafetown.pages.LoginPage;
 
+//Home Page Test Cases.
 public class HomeTest extends SeleniumUtil{
 
 	private WebDriver driver;
@@ -32,67 +34,61 @@ public class HomeTest extends SeleniumUtil{
 		return home;
 	}
 	
-	//@Test
-	public void ValidateLogoutbutton(){
-		//home = login.LoginFunction("Luke", "Skywalker");
-		Assert.assertTrue(home.verifyLogoutbtn(), "User logged out successfully");
-	}
-	
 	@Test(priority =0)
 	public void validateRecordsOnHomePage(){
-		//home = login.LoginFunction("Luke", "Skywalker");
-		Assert.assertTrue(home.verifyRecords(),"Records are visiable on the Home Page");
+		
+		Assert.assertTrue(home.verifyRecords(),"Records are not visiable on the Home Page");
 	}
 	
 	@Test(priority =1)
 	public void validateloggedUser(){
-		//home = login.LoginFunction("Luke", "Skywalker");
-		Assert.assertTrue(home.verifyHomePage(),"User id is correct");
+		
+		Assert.assertTrue(home.verifyHomePage(),"User id is incorrect");
 	}
 	
 	@Test(priority =2)
 	public void validateCreateButtonEnable(){
-		//home = login.LoginFunction("Luke", "Skywalker");
-		Assert.assertTrue(home.getCreateBtn().isEnabled(),"Edit id is correct");
+		
+		Assert.assertTrue(home.getCreateBtn().isEnabled(),"Create button is not enable");
 	}
 	
 	@Test(priority =3)
 	public void validateEditButtonDisabled(){
-		//home = login.LoginFunction("Luke", "Skywalker");
+		
 		String value = home.getEditBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
-		Assert.assertTrue(classValue,"Edit button is disabled");
+		Assert.assertTrue(classValue,"Edit button is not disabled");
 	}
 	
 	@Test(priority =4)
 	public void validateDeleteButtonDisabled(){
-		//home = login.LoginFunction("Luke", "Skywalker");
+		
 		String value = home.getDeleteBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
-		Assert.assertTrue(classValue,"Delete button is disabled");
+		Assert.assertTrue(classValue,"Delete button is not disabled");
 	}
 	
 	@Test(priority =5)
 	public void validateEditButtonEnabled(){
-		//home = login.LoginFunction("Luke", "Skywalker");
+		
 		home.selectRecord();
 		String value = home.getEditBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
-		Assert.assertFalse(classValue,"Edit button is Enabled");
+		Assert.assertFalse(classValue,"Edit button is not Enabled");
 	}
 	
 	@Test(priority =6)
 	public void validateDeleteButtonEnabled(){
-		//home = login.LoginFunction("Luke", "Skywalker");
+		
 		home.selectRecord();
 		String value = home.getEditBtn().getAttribute("class");
 		boolean classValue = value.contains("disable");
-		Assert.assertFalse(classValue,"Delete id is Enabled");
+		Assert.assertFalse(classValue,"Delete id is not Enabled");
 	}
 	
 	@Test(priority =7)
 	public void validateDeleteEmployeeRecord(){
-		home = login.LoginFunction("Luke", "Skywalker");
+		
 		home.selectRecord();
 		String delrecord = home.getRecord().getText();
 		home.clickOnDeleteBtn();
@@ -105,20 +101,23 @@ public class HomeTest extends SeleniumUtil{
 			if(actultext.contains(delrecord)!= true )
 			{
 				boolean deletestatus = actultext.contains("Sel");
-				Assert.assertFalse(deletestatus, "Record is not deleted");
+				Assert.assertFalse(deletestatus, "Record is deleted");
 				break;
 			}
-//			
-//			if((iterat.next().getText().contains(delrecord))!=true)
-//			{
-//				boolean deletestatus = iterat.next().getText().contains(delrecord);
-//				Assert.assertFalse(deletestatus, "Record is not deleted");
-//				break;
-//			}
 		}
 				
 	}
 	
+	@Test(priority =8)
+	public void ValidateLogoutbutton(){
+		
+		Actions action = new Actions(driver);
+		action.moveToElement(home.getLogoutBtn()).perform();
+		action.moveToElement(home.getLogoutBtn()).click().perform();
+		
+		boolean logoutstatus = login.getLoginBtn().isDisplayed();
+		Assert.assertTrue(logoutstatus, "User didn't logged out unsuccessfully");
+	}
 	
 	@AfterMethod
 	public void tearDown(){

@@ -15,7 +15,7 @@ import com.leap.cafetown.pages.HomePage;
 import com.leap.cafetown.pages.LoginPage;
 
 
-
+//Create Employee Page Test Cases.
 public class CreateNewEmployeeTest extends SeleniumUtil{
 	
 	private WebDriver driver;

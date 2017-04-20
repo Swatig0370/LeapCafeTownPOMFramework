@@ -11,7 +11,7 @@ import com.leap.cafetown.pages.HomePage;
 import com.leap.cafetown.pages.LoginPage;
 
 
-
+//Login Page Test Cases.
 public class LoginTest extends SeleniumUtil {
 
 	private WebDriver driver;

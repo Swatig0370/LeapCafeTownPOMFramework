@@ -14,6 +14,7 @@ import com.leap.cafetown.pages.EditEmployeePage;
 import com.leap.cafetown.pages.HomePage;
 import com.leap.cafetown.pages.LoginPage;
 
+//Edit Employee Page Test Cases.
 public class EditEmployeeTest extends SeleniumUtil{
 
 

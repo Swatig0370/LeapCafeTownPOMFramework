@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Wait;
 import com.leap.cafetown.common.SeleniumUtil;
 
 
-
+//Login Page object repository.
 public class LoginPage extends SeleniumUtil{
 	
 	private WebDriver driver;
@@ -32,6 +32,10 @@ public class LoginPage extends SeleniumUtil{
 		PageFactory.initElements(driver, this);
 		}
 
+	public WebElement getLoginBtn() {
+		return loginBtn;
+	}
+	
 	public void enterUsername(String username)
 	{
 		

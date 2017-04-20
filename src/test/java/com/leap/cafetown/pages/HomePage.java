@@ -9,17 +9,17 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.leap.cafetown.common.SeleniumUtil;
 
-
+//Home Page object repository.
 public class HomePage {
 	
 	private WebDriver driver;
 	SeleniumUtil util = new SeleniumUtil();
-	
-	
+	LoginPage login;
+		
 	@FindBy(id="greetings")
 	private WebElement userId;
 	
-	@FindBy(xpath="/html/body/div/header/div/p[1]")
+	@FindBy(xpath="//*[@class='main-button']")
 	private WebElement logoutBtn;
 	
 	@FindBy(xpath="//*[@id='bAdd']")
@@ -43,6 +43,10 @@ public class HomePage {
 		this.driver= driver;
 		PageFactory.initElements(driver, this);
 		}
+	
+	public WebElement getLogoutBtn() {
+		return logoutBtn;
+	}
 	
 	public WebElement getCreateBtn() {
 		return createBtn;
@@ -90,19 +94,6 @@ public class HomePage {
 	public boolean verifyHomePage(){
 		
 		return getUserID().contains("Hello Luke");
-	}
-	
-	
-	public boolean verifyLogoutbtn(){
-		
-		util.waitForPageToLoadImplicit(driver);
-		if(logoutBtn.isEnabled()&& logoutBtn.isEnabled())
-		{ 
-			System.out.println("Logout button is clickable.");	
-			logoutBtn.click();
-		}
-		return driver.getCurrentUrl().contains("login");
-		
 	}
 	
 	public boolean verifyRecords(){
